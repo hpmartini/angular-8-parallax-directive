@@ -1,15 +1,15 @@
 <div class="container">
   <hello name="{{ name }}"></hello>
-  <p appParallax [ratio]="-11">I'm moving negatively slow.</p>
-  <p appParallax [ratio]="-12">I'm going a bit faster</p>
-  <p appParallax [ratio]="-13">Me even more.</p>
-  <p appParallax [ratio]="-14">And I rock!</p>
+  <p appParallax [factor]="11">I'm slowly inverting.</p>
+  <p appParallax [factor]="12">I'm doing it faster!</p>
+  <p appParallax [factor]="13">Me even more.</p>
+  <p appParallax [factor]="14">And I rock!</p>
 </div>
 
 <div class="container">
-  <h1 appParallax [ratio]="2">Hello Parallax</h1>
+  <h1 appParallax [factor]="1.5">Hello Parallax</h1>
+
+  <div id="linearScrollingText">I just scroll in linear speed</div>
+
+  <div id="slowText" appParallax [factor]="9">I'm going faaaa... not.</div>
 </div>
-
-<div id="fixText">I just scroll in linear speed</div>
-
-<div id="slowText" appParallax [ratio]="8">I'm going fast!</div>

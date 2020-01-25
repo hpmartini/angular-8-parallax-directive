@@ -4,27 +4,26 @@ import {Directive, ElementRef, HostListener, Input, Renderer2} from '@angular/co
   selector: '[appParallax]'
 })
 export class ParallaxDirective {
-  @Input('ratio') set parallaxRatio(val) {
-    this.ratio = val ? val : 1;
+  @Input('factor') set parallaxFactor(val) {
+    this.factor = val ? val : 1;
   }
 
-  private ratio: number;
-  initialTop = 0;
+  private factor: number;
 
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2
-  ) {
-    this.initialTop = this.elementRef.nativeElement.getBoundingClientRect().top;
-  }
+  ) { }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
-    this.renderer.setProperty(this.elementRef.nativeElement, 'style',
-      `transform: translateY(${(this.getTranslation())}px)`);
+    this.renderer.setProperty(
+      this.elementRef.nativeElement, 
+      'style',
+      `transform: translateY(${this.getTranslation()}px)`);
   }
 
   private getTranslation() {
-    return this.initialTop - (window.scrollY * this.ratio / 10);
+    return window.scrollY * this.factor / 10;
   }
 }
